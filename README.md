@@ -84,7 +84,7 @@ Some notes on the above:
 - The image is based on alpine.  The github says there are images also based on CentOS, rhel, ol, ubuntu
 - The env defaults to a zabbix proxy running in Active mode.  The proxy does not get polled; it does the polling
 - The zabbix proxy talks to the server using a pre-shared key. I chose to setup a Persistant Volume to hold the psk file
-
+## Persistant Volume
 On my host computer, I do NFS sharing.  I setup an NFS share that holds my psk file.  Here's my /etc/exports file:
 ```
 [root@dell2 ~]# vi /etc/exports
