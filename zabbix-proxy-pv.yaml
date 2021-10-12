@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: zabbixpsk
+  labels:
+    app: zabbix
+    tier: proxy
+  namespace: zabbix
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadOnlyMany
+  nfs:
+    server: 192.168.101.152
+    path: "/home/nfs/zabbix/enc"
+  storageClassName: nfs

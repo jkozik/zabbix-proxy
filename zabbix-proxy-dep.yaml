@@ -1,0 +1,49 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zabbix-proxy-sqlite3
+  labels:
+    app: zabbix
+    tier: proxy
+  namespace: zabbix
+spec:
+  selector:
+    matchLabels:
+      app: zabbix-proxy-sqlite3
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: zabbix-proxy-sqlite3
+    spec:
+      containers:
+        - name: zabbix-proxy-sqlite3
+          image: zabbix/zabbix-proxy-sqlite3:alpine-5.2-latest
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 10051
+            protocol: TCP
+            name: zabbix-trapper
+          volumeMounts:
+          - mountPath: /var/lib/zabbix/enc
+            name: zabbixpsk
+          env:
+          - name: ZBX_HOSTNAME
+            value: "k8szabbixproxy"
+          - name: ZBX_SERVER_HOST
+            value: "linode2.kozik.net"
+          - name: ZBX_CONFIGFREQUENCY
+            value: "60"
+          - name: ZBX_TLSPSKIDENTITY
+            value: "PSK 001"
+          - name: ZBX_TLSPSKFILE
+            value: zabbix_agentd.psk
+          - name: ZBX_TLSCONNECT
+            value: "psk"
+      volumes:
+      - name: zabbixpsk
+        persistentVolumeClaim:
+          claimName: zabbixpsk
+
