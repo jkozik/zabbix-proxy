@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: zabbix-proxy-sqlite3
-          image: zabbix/zabbix-proxy-sqlite3:alpine-5.2-latest
+          image: zabbix/zabbix-proxy-sqlite3:alpine-6.0-latest
           imagePullPolicy: Always
           ports:
           - containerPort: 10051
@@ -33,7 +33,7 @@ spec:
           - name: ZBX_HOSTNAME
             value: "k8szabbixproxy"
           - name: ZBX_SERVER_HOST
-            value: "linode2.kozik.net"
+            value: "linode3.kozik.net"
           - name: ZBX_CONFIGFREQUENCY
             value: "60"
           - name: ZBX_TLSPSKIDENTITY
