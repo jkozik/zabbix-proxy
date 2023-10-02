@@ -33,7 +33,7 @@ spec:
           - name: ZBX_HOSTNAME
             value: "k8szabbixproxy"
           - name: ZBX_SERVER_HOST
-            value: "linode3.kozik.net"
+            value: "linode4.kozik.net"
           - name: ZBX_CONFIGFREQUENCY
             value: "60"
           - name: ZBX_TLSPSKIDENTITY
